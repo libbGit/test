@@ -104,118 +104,120 @@
    * 从后端接口获取 数据，根据数据来判断如何展示魔图形式
    */
 
-  
   function fetch_Mt_Data() {
     let href = GLOBAL_DATA.href;
     let param = JSON.stringify({ href: href });
 
     console.log("fetch_Mt_Data=", href);
 
-    if(GLOBAL_DATA.domain.indexOf("bizhiquan")){  //视觉中国 锁屏
-      let pageKind = $jquery(".summary").html().trim();
+    if (GLOBAL_DATA.domain.indexOf("bizhiquan")) {
+      //视觉中国 锁屏
+      let pageKind = $jquery(".summary")
+        .html()
+        .trim();
       param = JSON.stringify({ href: href, kind: pageKind });
     }
 
-    $jquery.ajax({
-      type: "post",
-      url: GLOBAL_DATA.mt_url,
-      timeout: 5000000,
-      dataType: "json",
-      data: param,
-      async: true,
-      crossDomain: true, //保留cookie
-      success: data => {
-        data = {
-          data: {
-            active: 1,
-            adsense: [
-              {
-                cvCode:
-                  "https://pctracking.gentags.net/mtc?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=ad&cPosition=1",
-                ext: "",
-                form_svCode:
-                  "https://pctracking.gentags.net/mtc?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=sbm&cPosition=1",
-                fromUrl: "https://images.pagechoice.net/data/fordring/creative/20190301/1551412828320.html",
-                landingUrl:
-                  "http://www.bmw.com.cn/zh/index.html?bmw=sea:baidu:brand:p_bzonep_18-all-lt-bd-bz_wh_bz_tw&mz_ca=2074779&mz_sp=7DhI8&mz_kw=8719614",
-                logoImg_pvCode:
-                  "https://pctracking.gentags.net/mtv?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=logo&cPosition=1",
-                logo_img_src: "https://images.pagechoice.net/data/fordring/creative/20190301/1551412752130.png",
-                positionId: 1,
-                pvCode:
-                  "https://pctracking.gentags.net/mtv?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=ad&cPosition=1",
-                urlB: "https://images.pagechoice.net/data/fordring/creative/20190301/1551412783332.gif"
-              }
-            ],
-            closeCvCode:
-              "https://pctracking.gentags.net/mtc?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=cls&cPosition=1",
-            creativeId: 339,
-            csss: ["./suoping_files/tear-angle.css;"],
-            customerId: 42,
-            formSubmitUrl: "http://mt.gentags.net/creative/add.do",
-            jss: ["https://images.pagechoice.net/data/athena/js/turn.js;"],
-            mediaId: 27,
-            planId: 396,
-            pointId: ".motu",
-            positionMark: 1,
-            terminal: "wap",
-            type: 13,
-            zoneId: 142
-          },
-          message: "OK",
-          state: 200
-        };
-        
-        let option = data.data;
-        if (data.state == 200 && data.data) {
-          option = data.data;
-
-          //加载motu效果css
-
-          // if (env.mode != "development") {
-            loadMotuCss(option.csss);
-          // }
-
-          console.log("option", option);
-          validateImage(option);
-        } else {
-          //如果返回数据为空，则为了让后台能知道发生了什么事，前端需要向后端发送 “邮件” 请求，由后端发送邮件
-          console.error("*****************返回数据为空！*********************");
-          let Models = "";
-          if (GLOBAL_DATA.domain.indexOf("bitauto") > 0) {
-            //易车
-            Models =
-              GLOBAL_DATA.href.substr(7).split(".")[0] == "news"
-                ? $(".h6")
-                    .children("a")
-                    .attr("href")
-                    .split("/")[3]
-                : "'" + $("#hfCarLevel").val() + "'";
-          } else {
-            Models = GLOBAL_DATA.domain;
+    // $jquery.ajax({
+    //   type: "post",
+    //   url: GLOBAL_DATA.mt_url,
+    //   timeout: 5000000,
+    //   dataType: "json",
+    //   data: param,
+    //   async: true,
+    //   crossDomain: true, //保留cookie
+    //   success: data => {
+    let data = {
+      data: {
+        active: 1,
+        adsense: [
+          {
+            cvCode:
+              "https://pctracking.gentags.net/mtc?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=ad&cPosition=1",
+            ext: "",
+            form_svCode:
+              "https://pctracking.gentags.net/mtc?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=sbm&cPosition=1",
+            fromUrl: "https://images.pagechoice.net/data/fordring/creative/20190301/1551412828320.html",
+            landingUrl:
+              "http://www.bmw.com.cn/zh/index.html?bmw=sea:baidu:brand:p_bzonep_18-all-lt-bd-bz_wh_bz_tw&mz_ca=2074779&mz_sp=7DhI8&mz_kw=8719614",
+            logoImg_pvCode:
+              "https://pctracking.gentags.net/mtv?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=logo&cPosition=1",
+            logo_img_src: "https://images.pagechoice.net/data/fordring/creative/20190301/1551412752130.png",
+            positionId: 1,
+            pvCode:
+              "https://pctracking.gentags.net/mtv?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=ad&cPosition=1",
+            urlB: "https://images.pagechoice.net/data/fordring/creative/20190301/1551412783332.gif"
           }
-
-          let mt_media = GLOBAL_DATA.href.substr(7).split(".")[1];
-          let data_Res = data.state;
-          let url = "'" + GLOBAL_DATA.href + "'";
-          console.log(
-            "models:  " + Models + ",    mt_media:  " + mt_media + ",    data_res:  " + data_Res + ",   url:" + url
-          );
-          $jquery.ajax({
-            type: "get",
-            url: "http://motu.pagechoice.com:8055/send",
-            timeout: 5000000,
-            data: { zoneName: Models, mesg: data_Res, media: mt_media, url: url },
-            async: true,
-            crossDomain: true //保留cookie
-          });
-        }
+        ],
+        closeCvCode:
+          "https://pctracking.gentags.net/mtc?projectId=63&planId=1552442354304&zoneId=142&mediaId=27&formatId=74&creativeId=339&cType=cls&cPosition=1",
+        creativeId: 339,
+        csss: ["./suoping_files/tear-angle.css;"],
+        customerId: 42,
+        formSubmitUrl: "http://mt.gentags.net/creative/add.do",
+        jss: ["https://images.pagechoice.net/data/athena/js/turn.js;"],
+        mediaId: 27,
+        planId: 396,
+        pointId: ".motu",
+        positionMark: 1,
+        terminal: "wap",
+        type: 13,
+        zoneId: 142
       },
-      error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.log(XMLHttpRequest, textStatus, errorThrown);
-        // console.log("请求失败！");
+      message: "OK",
+      state: 200
+    };
+
+    let option = data.data;
+    if (data.state == 200 && data.data) {
+      option = data.data;
+
+      //加载motu效果css
+
+      // if (env.mode != "development") {
+      loadMotuCss(option.csss);
+      // }
+
+      console.log("option", option);
+      validateImage(option);
+    } else {
+      //如果返回数据为空，则为了让后台能知道发生了什么事，前端需要向后端发送 “邮件” 请求，由后端发送邮件
+      console.error("*****************返回数据为空！*********************");
+      let Models = "";
+      if (GLOBAL_DATA.domain.indexOf("bitauto") > 0) {
+        //易车
+        Models =
+          GLOBAL_DATA.href.substr(7).split(".")[0] == "news"
+            ? $(".h6")
+                .children("a")
+                .attr("href")
+                .split("/")[3]
+            : "'" + $("#hfCarLevel").val() + "'";
+      } else {
+        Models = GLOBAL_DATA.domain;
       }
-    });
+
+      let mt_media = GLOBAL_DATA.href.substr(7).split(".")[1];
+      let data_Res = data.state;
+      let url = "'" + GLOBAL_DATA.href + "'";
+      console.log(
+        "models:  " + Models + ",    mt_media:  " + mt_media + ",    data_res:  " + data_Res + ",   url:" + url
+      );
+      $jquery.ajax({
+        type: "get",
+        url: "http://motu.pagechoice.com:8055/send",
+        timeout: 5000000,
+        data: { zoneName: Models, mesg: data_Res, media: mt_media, url: url },
+        async: true,
+        crossDomain: true //保留cookie
+      });
+    }
+    //   },
+    //   error: (XMLHttpRequest, textStatus, errorThrown) => {
+    //     console.log(XMLHttpRequest, textStatus, errorThrown);
+    //     // console.log("请求失败！");
+    //   }
+    // });
   }
 
   /**
@@ -307,16 +309,16 @@
     createTearAngle(mtData);
     createTearFold(mtData);
     /**
-        6 撕角展示
-        7 撕角交互   
-        13 撕角渐变交互   
-        14 撕角渐变展示
-
-        8 折页上下展示  
-        9 折页左右展示  
-        10 折页上下交互  
-        11 折页左右交互  
-       */
+          6 撕角展示
+          7 撕角交互   
+          13 撕角渐变交互   
+          14 撕角渐变展示
+  
+          8 折页上下展示  
+          9 折页左右展示  
+          10 折页上下交互  
+          11 折页左右交互  
+         */
     if (mtData.type == 6 || mtData.type == 7 || mtData.type == 13 || mtData.type == 14) {
       let vm = new Vue({
         render: h => h("motu-tear-angle")
@@ -367,34 +369,34 @@
         };
       },
       template: `<div class="motu-main" style="position: relative; overflow: hidden;" :style="img_layout_style">
-                      <div class="mt_img_layout" :style="img_layout_style" style="position: relative; z-index: 2;">
-                          <div class="mt_img_box mt_the_img" @click="gotoLanding(landingUrl,$event)">
-                              <div v-html="componentData.first_img.context.outerHTML"></div>
-                          </div>
-                          <template v-if="isHorizontal">
-                              <i class="mt_btn mt_btn_right" v-if="isShowRightArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_right.gif" style="width:100%;height:auto;min-width:100%"/></i>
-                              <i class="mt_btn mt_btn_left" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_left.gif" style="width:100%;height:auto;min-width:100%"></i>
-                          </template>
-                          <template v-else>
-                              <i class="mt_btn mt_btn_up" v-if="isShowUpArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_up.gif" style="width:100%;height:auto;min-width:100%"/></i>
-                              <i class="mt_btn mt_btn_down" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_down.gif" style="width:100%;height:auto;min-width:100%"/></i>
-                          </template>
-                      </div>
-                      <div class="mt_adImg_div" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
-                          <a :href="landingUrl" v-if="isShowBottomImage" class="mt_pd_img" :style="motu_bottom_style" @click="gotoLanding(landingUrl,$event)">
-                              <img style="display:none;position:absolute" :src="url" :style="motu_bottom_img_style" />
-                          </a>
-                      </div>
-                      <div class="ad_msgMc" v-if="isShowClose">
-                          <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
-                          <div class="input__area" v-if="false" @click="onClickInputArea($event)">
-                              <div>
-                                <label>姓名</label>
-                                <input type="text"/>
-                              </div>
-                          </div>
-                      </div>
-                  </div>`,
+                        <div class="mt_img_layout" :style="img_layout_style" style="position: relative; z-index: 2;">
+                            <div class="mt_img_box mt_the_img" @click="gotoLanding(landingUrl,$event)">
+                                <div v-html="componentData.first_img.context.outerHTML"></div>
+                            </div>
+                            <template v-if="isHorizontal">
+                                <i class="mt_btn mt_btn_right" v-if="isShowRightArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_right.gif" style="width:100%;height:auto;min-width:100%"/></i>
+                                <i class="mt_btn mt_btn_left" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_left.gif" style="width:100%;height:auto;min-width:100%"></i>
+                            </template>
+                            <template v-else>
+                                <i class="mt_btn mt_btn_up" v-if="isShowUpArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_up.gif" style="width:100%;height:auto;min-width:100%"/></i>
+                                <i class="mt_btn mt_btn_down" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_down.gif" style="width:100%;height:auto;min-width:100%"/></i>
+                            </template>
+                        </div>
+                        <div class="mt_adImg_div" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
+                            <a :href="landingUrl" v-if="isShowBottomImage" class="mt_pd_img" :style="motu_bottom_style" @click="gotoLanding(landingUrl,$event)">
+                                <img style="display:none;position:absolute" :src="url" :style="motu_bottom_img_style" />
+                            </a>
+                        </div>
+                        <div class="ad_msgMc" v-if="isShowClose">
+                            <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
+                            <div class="input__area" v-if="false" @click="onClickInputArea($event)">
+                                <div>
+                                  <label>姓名</label>
+                                  <input type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`,
       computed: {
         isHorizontal() {
           return this.direction == "horizontal";
@@ -593,13 +595,12 @@
 
             if (this.componentData.type == 8 || this.componentData.type == 10) {
               this.motu_bottom_style.background = "black";
-              this.motu_bottom_style.top = this.imgBoxHeight * ((100-movementAngle)/100)+"px";
-                // -this.imgBoxHeight + (this.imgBoxHeight + this.first_img_height / 4.6) * (movementAngle / 100) + "px";
+              this.motu_bottom_style.top = this.imgBoxHeight * ((100 - movementAngle) / 100) + "px";
+              // -this.imgBoxHeight + (this.imgBoxHeight + this.first_img_height / 4.6) * (movementAngle / 100) + "px";
             } else {
               this.motu_bottom_style.background = "black";
-              this.motu_bottom_style.left = this.imgBoxWidth* ((100-movementAngle)/100)+"px";
-                // this.imgBoxWidth + 70 - (this.imgBoxWidth + this.first_img_width / 4.2) * (movementAngle / 100) + "px";
-
+              this.motu_bottom_style.left = this.imgBoxWidth * ((100 - movementAngle) / 100) + "px";
+              // this.imgBoxWidth + 70 - (this.imgBoxWidth + this.first_img_width / 4.2) * (movementAngle / 100) + "px";
             }
 
             if (movementAngle > 40) {
@@ -607,7 +608,6 @@
             } else {
               this.isShowClose = false;
             }
-
 
             if (movementAngle > 10) {
               //提示按钮显示隐藏
@@ -650,6 +650,7 @@
           componentData: mtData,
 
           geoStores: {},
+          showJmc: true,
 
           provinceArr: [],
           province_title: "",
@@ -690,71 +691,71 @@
         };
       },
       template: `<div style="position:relative; display:inline-block;" class="tear-angle">
-                      <div class="flipbook">
-                          <div>
-                              <div class="mt_main" v-html="componentData.first_img.context.outerHTML">
-                              </div>
-                              <div class="opcity">
-                                  <a class="opcity_a_href" :href="landingUrl"></a>
-                                  <img style="position:relative;top:50%;transform:translate(0,-50%)" :src="getImageUrl()">
-                              </div>
-                              <span class="jMc">
-                                  <span class="mt_jiao_img"></span>
-                                  <img :src="logo_img_src" width="45" height="45" class="logo"/>
-                                  <span class="mt_jiao_back"></span>
-                              </span>
-                          </div>
-                          <div class="seconde_page">
-                              <div class="page2_main" style="position: absolute;opacity: 0;" v-html="componentData.first_img.context.outerHTML"></div>
-                              <a :href="landingUrl" class="mt_adImg_a">
-                                  <img :src="getImageUrl()" @click="setMotuMonitor(componentData.adsense[0].cvCode)"/>
-                              </a>
-                              <div class="ad_msgMc" v-if="isOperate">
-                                  <div class="person_info" v-show="personInfoPage==1">
-                                      <span v-show="!rules.username.validate" class="name_error_msg">{{rules.username.message}}</span>
-                                      <input type="text" v-model="username" class="name" placeholder="请输入您的名字" />
-                                      <span v-show="!rules.phone.validate" class="phone_error_msg">{{rules.phone.message}}</span>
-                                      <input type="text" v-model="phone" class="phone" placeholder="请输入11位手机号码" maxlength="11" />
-                                      <input type="submit" value="预约" class="reservation" style="background:rgb(255, 255, 255);" :class="{disabled:!ischecked}" @click="gotoReserve()"/>
-                                      <span class="register_info" id="register_is_agree" >
-                                          <input id="mt_checked" type="checkbox" v-model="ischecked"  class="register_checkbox"/>注册即视为同意
-                                          <a target="view_window" href="https://i.m.yiche.com/AuthenService/Register/PrivacyPolicy.html" style="color:#00ff00" >《隐私政策》</a>
-                                      </span>
-                                  </div>
-                                  <div class="selectMc" :style="selectMcStyle" v-if="personInfoPage==2">
-                                      <font class="backBtn"><<返回</font>
-                                      <div style="position:relative">
-                                          <span class="error_msg" v-if="!rules.province.validate">请选择{{province_title}}</span>
-                                          <label class="label1 ll">{{province_title}}:</label>
-                                          <select id="province" v-model="provinceValue" @change="handleChangeProvince">
-                                              <option value="">请选择{{province_title}}</option>
-                                              <option v-for="(item,index) in provinceArr" :key="index" :value="item">{{item}}</option>
-                                          </select>
-                                      </div>
-                                      <div  style="position:relative">
-                                          <span class="error_msg"  v-if="!rules.city.validate">请选择{{city_tile}}</span>
-                                          <label class="label2 ll">{{city_tile}}:</label>
-                                          <select id="city" v-model="cityValue" @change="handleChangeCity">
-                                              <option value="">请选择{{city_tile}}</option>
-                                              <option v-for="(item,index) in cityArr" :key="index" :value="item">{{item}}</option>
-                                          </select>
-                                      </div>
-                                      <div  style="position:relative">
-                                          <span class="error_msg" v-if="!rules.hometown.validate">请选择{{hometown_title}}</span>
-                                          <label class="label3 ll">{{hometown_title}}:</label>
-                                          <select id="dealer" v-model="hometownValue">
-                                              <option value="">请选择{{hometown_title}}</option>
-                                              <option v-for="(item,index) in hometownArr" :key="index" :value="item">{{item}}</option>
-                                          </select>
-                                      </div>
-                                      <input type="submit" value="提交" class="tjBtn" @click="onSubmit" v-if="!isSubmitSuccess"/>
-                                      <input type="text" v-else value="提交成功！" class="tjTxt"/>
-                                  </div>
-                              </div>
-                              <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
-                          </div>
-                      </div>
-                  </div>`,
+                        <div class="flipbook">
+                            <div>
+                                <div class="mt_main" v-html="componentData.first_img.context.outerHTML">
+                                </div>
+                                <div class="opcity">
+                                    <a class="opcity_a_href" :href="landingUrl"></a>
+                                    <img style="position:relative;top:50%;transform:translate(0,-50%)" :src="getImageUrl()">
+                                </div>
+                                <span class="jMc" v-if="showJmc">
+                                    <span class="mt_jiao_img"></span>
+                                    <img :src="logo_img_src" width="45" height="45" class="logo"/>
+                                    <span class="mt_jiao_back"></span>
+                                </span>
+                            </div>
+                            <div class="seconde_page">
+                                <div class="page2_main" style="position: absolute;opacity: 0;" v-html="componentData.first_img.context.outerHTML"></div>
+                                <a :href="landingUrl" class="mt_adImg_a">
+                                    <img :src="getImageUrl()" @click="setMotuMonitor(componentData.adsense[0].cvCode)"/>
+                                </a>
+                                <div class="ad_msgMc" v-if="isOperate">
+                                    <div class="person_info" v-show="personInfoPage==1">
+                                        <span v-show="!rules.username.validate" class="name_error_msg">{{rules.username.message}}</span>
+                                        <input type="text" v-model="username" class="name" placeholder="请输入您的名字" />
+                                        <span v-show="!rules.phone.validate" class="phone_error_msg">{{rules.phone.message}}</span>
+                                        <input type="text" v-model="phone" class="phone" placeholder="请输入11位手机号码" maxlength="11" />
+                                        <input type="submit" value="预约" class="reservation" style="background:rgb(255, 255, 255);" :class="{disabled:!ischecked}" @click="gotoReserve()"/>
+                                        <span class="register_info" id="register_is_agree" >
+                                            <input id="mt_checked" type="checkbox" v-model="ischecked"  class="register_checkbox"/>注册即视为同意
+                                            <a target="view_window" href="https://i.m.yiche.com/AuthenService/Register/PrivacyPolicy.html" style="color:#00ff00" >《隐私政策》</a>
+                                        </span>
+                                    </div>
+                                    <div class="selectMc" :style="selectMcStyle" v-if="personInfoPage==2">
+                                        <font class="backBtn"><<返回</font>
+                                        <div style="position:relative">
+                                            <span class="error_msg" v-if="!rules.province.validate">请选择{{province_title}}</span>
+                                            <label class="label1 ll">{{province_title}}:</label>
+                                            <select id="province" v-model="provinceValue" @change="handleChangeProvince">
+                                                <option value="">请选择{{province_title}}</option>
+                                                <option v-for="(item,index) in provinceArr" :key="index" :value="item">{{item}}</option>
+                                            </select>
+                                        </div>
+                                        <div  style="position:relative">
+                                            <span class="error_msg"  v-if="!rules.city.validate">请选择{{city_tile}}</span>
+                                            <label class="label2 ll">{{city_tile}}:</label>
+                                            <select id="city" v-model="cityValue" @change="handleChangeCity">
+                                                <option value="">请选择{{city_tile}}</option>
+                                                <option v-for="(item,index) in cityArr" :key="index" :value="item">{{item}}</option>
+                                            </select>
+                                        </div>
+                                        <div  style="position:relative">
+                                            <span class="error_msg" v-if="!rules.hometown.validate">请选择{{hometown_title}}</span>
+                                            <label class="label3 ll">{{hometown_title}}:</label>
+                                            <select id="dealer" v-model="hometownValue">
+                                                <option value="">请选择{{hometown_title}}</option>
+                                                <option v-for="(item,index) in hometownArr" :key="index" :value="item">{{item}}</option>
+                                            </select>
+                                        </div>
+                                        <input type="submit" value="提交" class="tjBtn" @click="onSubmit" v-if="!isSubmitSuccess"/>
+                                        <input type="text" v-else value="提交成功！" class="tjTxt"/>
+                                    </div>
+                                </div>
+                                <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
+                            </div>
+                        </div>
+                    </div>`,
       computed: {
         isSecondPage() {
           //撕角交互   撕角渐变交互
@@ -1067,20 +1068,21 @@
             $jquery(".page2_main").css({ position: "relative", opacity: 1 - opacity });
             $jquery(".mt_adImg_a").css({ position: "relative", opacity: opacity });
 
+            if (opacity > 0.3) {
+              $jquery(".flipbook").turn("disable", true);
+              this.showJmc = false;
+            } else {
+              $jquery(".flipbook").turn("disable", false);
+              this.showJmc = true;
+            }
+
             if (opacity > 0.85) {
               $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
               $jquery(".mt_adImg_a").css({ position: "relative", opacity: 1 });
               $jquery(".opcity").css({ opacity: 1 });
-
-              $jquery(".flipbook").turn("disable", false);
-              $jquery(".flipbook").turn("page", 2);
             } else if (opacity < 0.15) {
               $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
               $jquery(".mt_adImg_a").css({ position: "relative", opacity: 1 });
-              $jquery(".opcity").css({ opacity: 0 });
-
-              $jquery(".flipbook").turn("disable", false);
-              $jquery(".flipbook").turn("page", 1);
             }
           };
 
@@ -1089,8 +1091,6 @@
             1 - ($jquery(".flipbook").offset().top - $jquery(document).scrollTop()) / $jquery(".flipbook").offset().top;
           if (initRadio > 0.85) {
             $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
-            $jquery(".flipbook").turn("disable", false);
-            $jquery(".flipbook").turn("page", 2);
           }
         }
       }
