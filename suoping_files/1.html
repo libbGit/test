@@ -1,0 +1,43 @@
+
+<!-- saved from url=(0077)http://yk.1ting.com/bd/ads/1?code=%27u3753535%27&absid=1f24155961920170787726 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<iframe id="ifm" src="./detail.html" style="width: 100%; height: 160px; border: none;" scrolling="no">
+</iframe>
+<script>
+    var iframe = document.getElementById("ifm");
+    iframe.src = "/bd/ads/detail?code='u3753535'&tid="+(new Date()).getTime();
+    function setParam(h) {
+        var ifm = document.getElementById("ifm");
+        ifm.style.height = h;
+
+        window.parent && window.parent.postMessage && window.parent.postMessage({
+            absid: getUrlParam().absid,
+            type:'CROSS',
+            id: getUrlParam().code.replace(/\'/g, ""),
+            setHeight: h ,
+        }, "*");
+        console.log( h)
+    }
+    function getUrlParam() {
+        var search = window.location.search.substr(1);
+        var mappers = search.split("&");
+        var hash = {};
+        for (var i in mappers) {
+            var index = mappers[i].indexOf("=");
+            hash[mappers[i].substring(0, index)] = mappers[i].substring(index + 1)
+        }
+        return hash;
+    }
+</script>
+
+
+</body></html>

@@ -1,0 +1,636 @@
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+table,
+td,
+tr,
+th,
+ol,
+ul,
+li,
+p,
+button,
+input,
+textarea {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul li {
+	list-style: none;
+}
+img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+html,
+body {
+	visibility: hidden;
+	height: 100%;
+	color: #2c2c2c;
+}
+input,
+img {
+	border: none;
+	list-style: none;
+}
+
+label {
+	list-style: none;
+}
+
+.nav_a,
+.nav_img,
+.nav_i,
+.nav_em,
+.nav_b {
+	text-decoration: none;
+	display: block;
+	font-style: normal;
+	font-size: 0.24rem;
+	float: left;
+	font-weight: 500;
+}
+.nav_img{
+	margin-top: 0.12rem;
+	width: 0.28rem;
+}
+
+.boxs {
+	width: 100%;
+	background: white;
+}
+.boxMargin{
+	width: 92%;
+	margin: 0 4%;
+	background: white;
+}
+.header {
+	width: 100%;
+	background: white;
+	margin-top: 0.83em;
+}
+#h_imgs{
+	display: none;
+}
+.header .header_a {
+	display: block;
+	font-size: 0.37rem;
+	padding: 3% 0;
+	text-align: left;
+	line-height: 0.52rem;
+	font-weight: 700;
+}
+
+.handI {
+	background: #f9f9f9;
+	width: 100%;
+}
+
+.h_img {
+	padding-top: 0.325rem;
+	margin-left: 37%;
+	background: #f9f9f9;
+	width: 26%;
+	height: 0.6rem;
+	display: none;
+}
+
+.h_img img {
+	display: block;
+	width: 100%;
+}
+
+.navI {
+	width: 100%;
+	height: 0.55rem;
+	background: white;
+	margin-bottom: 0.25rem;
+	margin-top: -0.6em;
+}
+
+.navI .nav_a {
+	color: #bfbfbf;
+	line-height: 0.55rem;
+	text-decoration: none;
+	font-size:0.25rem;
+	font-weight: 400;
+}
+
+.navI .nav_b {
+	margin-left: 2%;
+	color: #bfbfbf;
+	text-align: left;
+	line-height: 0.55rem;
+	font-size:0.25rem;
+	font-weight: 400;
+}
+
+.navI .nav_em {
+	line-height: 0.55rem;
+	color: #bfbfbf;
+	text-align: right;
+	float: right;
+}
+
+.navI .nav_i {
+	color: #bfbfbf;
+	line-height: 0.55rem;
+}
+
+.textI {
+	width: 100%;
+	margin-top: -0.5em;
+}
+
+.text_a div{
+	color: #000000;
+	margin: 0 0 10px;
+}
+.footerI {
+	width: 100%;
+	overflow: hidden;
+	padding:0;
+}
+
+.footerI .footer_a {
+	float: right;
+	color: #3557e9;
+	font-size: 0.18rem;
+}
+
+.name_2 {
+	padding: 0.3rem 0;
+	font-size: 0.25rem;
+	float: right;
+	color: #646464;
+}
+.line-Height{
+	line-height: 0.25rem;
+	font-size: 0.18rem;
+}
+.ulul{
+	position: relative;
+}
+.ulul li{
+	margin-bottom: 0.1rem;
+	background: white;
+}
+.text_a{
+	position: relative;
+	list-style: none;
+	text-decoration: none;
+	overflow: hidden;
+}
+a{
+	color: #000000;
+}
+iframe{
+	width: 100% !important;
+}
+video{
+	width: 100% !important;
+}
+.oppoBanner{
+	padding-bottom: 1.2rem ;
+}
+.widthX{
+	display: none;
+	width: 100%;
+	height: 0.03rem;
+	margin-bottom: 0.59rem;
+}
+.widthX p {
+	width: 30%;
+	margin: 0 35%;
+	height: 100%;
+	background: #e5e5e5;
+}
+
+
+#articleText .articleP{
+	text-indent:2em;
+	line-height: 0.45rem;
+	font-size: 0.28rem;
+}
+#articleText .articleImg{
+	text-indent:0em;
+	display: block!important;
+	font-size: 0.28rem;
+}
+
+#articleText .articleP+.articleImg{
+	text-indent:0em;
+	margin-top: -0.35em;
+}
+#articleText .articleImg+.articleP{
+	margin-top: -0.32em;
+	line-height: 0.45rem;
+}
+#articleText .articleImg+.articleImg{
+	text-indent:0em;
+	margin-top: -0.35em;
+	line-height:0em;
+}
+#articleText .articleP+.articleP{
+	margin-top: 0.6em;
+}
+#articleText .articleImg {
+	line-height: 0.45rem;
+}
+
+/*百度广告*/
+#iframU3>div{
+	margin-left: -3em!important;
+}
+
+/*相关推荐*/
+#relevant{
+	width: 100%;
+	/*background:#aaaaaa;*/
+	margin-top: 30px;
+}
+#relevant_side{
+	height: 7.5px;
+	width: 100%;
+	/*background: #FCE2E3;*/
+}
+#relevant_tit{
+	height: 28.125px;
+	width:100%;
+	font-size: 0.37rem;
+	line-height: 28.125px;
+	padding-left: 5%;
+}
+#relevant .data{
+	width: 91%;
+	float: left;
+	border-bottom: 0.5px solid #e0e0e0;
+	margin-left: 5%;
+}
+
+#relevant .char{
+	width: 63%;
+	float: left;
+	margin-bottom: 10px;
+	margin-top: 20px;
+	font-size: 0.28rem;
+}
+#relevant #img_a{
+	float: left;
+	margin-top: 15px;
+	margin-left: 2px;
+}
+#relevant #bas{
+	height: 30px;
+	width: 100%;
+	background: #FAFAFA;
+	float: left;
+	text-align:center;
+}
+#relevant .data #img_a img{
+	height: 1.3rem;
+	width: 1.96rem;
+	border-radius:4px;
+	margin-left: 10%;
+}
+#relevant #testDom{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+}
+/*查看全部*/
+#vivo_full_text{
+	width: 103%;
+	margin-left: -1%;
+	text-align: center;
+	text-indent: 0rem;
+	height: 5.5em;
+	position: absolute;
+	bottom: -13px;
+	padding-top: 2.5em;
+	background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(255,255,255,0)),color-stop(18%, #fff));
+}
+#vivo_full_text .full_text{
+	width: 40.2%;
+}
+#vivo_full_text .vivo_full_text_cone{
+	width: 3.5%;
+	margin-top: -1.1rem;
+	margin-left: 20%;
+}
+#vivo_full_text div{
+	margin-top: -7%;
+	color:#00cad8;
+	margin-left: -4%;
+	font-size: 0.25rem;
+}
+#vivo_full_text img:after{
+	content: '.';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: rgba(255, 102, 0, 0.1);
+}
+.hidden{
+	display: none;
+}
+/*oppo广告*/
+.oppoad-list .label .tip{
+	margin-top: 0.16rem;
+}
+.oppoad-list .label .brand{
+	margin-top: 0.18rem!important;
+}
+.oppoad-list a .lisThree-left .title{
+	line-height: 1.5em;
+}
+.oppoad-list a .lisThree-left .label{
+	margin-top: 0.16rem;
+}
+.oppoad-list a .lisThree-left .brand{
+	margin-top: 0.18rem;
+}
+.oppoad-list a .lisThree-left .label .tip{
+	margin-top: 0.16rem;
+}
+#meizgg {
+	padding-top: 0.5em;
+}
+/*gionee*/
+#gionee_u3555078{
+	margin-left: -5%;
+}
+/*查看全部*/
+#qiku_full_text{
+	width: 103%;
+	margin-left: -1%;
+	text-align: center;
+	text-indent: 0rem;
+	height: 0.9rem;
+	position: absolute;
+	bottom: 0.0rem;
+	padding-top: 0.2rem;
+	padding-bottom: -0.8rem;
+	margin-bottom: -0.001rem;
+	background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(255,255,255,0)),color-stop(18%, #fff));
+}
+#qiku_full_text .qiku_text{
+	width: 96%;
+}
+#qiku_full_text div{
+	color: #2999F9;
+	position: absolute;
+	top: 45%;
+	left: 35%;
+	font-size: 0.25rem;
+}
+#qiku_full_text .qiku_text_cone{
+	position: absolute;
+	width: 3.8%;
+	top: 52%;
+	right: 34%;
+}
+#qiku_full_text img:after{
+	content: '.';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: rgba(255, 102, 0, 0.1);
+}
+/*模态框*/
+#edit_mask {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	z-index: 50;
+}
+#edit_mask  .title{
+	position: absolute;
+	width: 6%;
+	right: 2px;
+	top:2px;
+}
+#edit_mask  .edit_mark_content {
+	margin-top: 25%;
+}
+/*模态推荐*/
+#edit_mask .recommend_div{
+	float: left;
+	width: 47%;
+	height: 3.5rem;
+	margin-left: 2%;
+	text-align: center;
+	color: #ffffff;
+}
+#edit_mask .unock_recommend{
+	color: gray;
+	font-size: 0.4rem;
+	margin-top: -0.8rem;
+	margin-bottom: 0.2rem;
+	margin-left: 0.1rem;
+}
+#edit_mask .recommend_img{
+	width: 100%;
+	height: 2rem;
+}
+/*查看大图广告*/
+#advertising_position{
+	position: relative;
+	bottom: 30%;
+	width: 100%;
+	z-index: 2;
+}
+#edit_mask .remove_advertising{
+	position: absolute;
+	right: 7px;
+	top: 0%;
+	background: gray;
+	width: 0.5rem;
+	z-index: 2147483648
+}
+
+/*吉欣广告*/
+#P0wIp{
+	margin-left: 5% !important;
+	width: 91% !important;
+}
+/*自己广告样式*/
+/*oppo大图一*/
+#F3 .s3{
+	padding: 0;
+}
+.s3{
+	padding: 0.5rem 0 0;
+}
+.s3 .title{
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	font-size: 0.25rem;
+	line-height: 1.6em;
+	color: #363636;
+}
+.s3 .p_nth2{
+	display: inline-block;
+	padding: 0.02rem 0.02rem 0;
+	line-height: 0.24rem;
+	border: 0.02rem rgba(170,170,170,.3) solid;
+	border-radius: 0.06rem;
+	font-size: 0.16rem;
+	float: left;
+	color: #aaa;
+	margin-top: 0px!important;
+}
+.s3 .p_nth3{
+	float: left;
+	margin-left: 0.16rem;
+	margin-top: 2.5%!important;
+	color: #aaa;
+	font-size: 0.24rem;
+	line-height:0;
+}
+.s3 .aig_a{
+	color: #aaa;
+	font-size: 0.24rem;
+	margin-top: 0.2rem;
+	line-height: 0.28rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/*vivo*/
+.s9 .title{
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	font-size: 0.28rem;
+	line-height: 1.6em;
+	color: #363636;
+}
+.s9 .advertisement_9_margin{
+	margin: 0px;
+}
+.s9 .p_nth2{
+	color: #d2d2d2;
+}
+/*oppo 左文右图*/
+.s7{
+	position: relative;
+}
+.s7 .divSpan_b{
+	color: #2c2c2c;
+	font-size:0.32rem;
+	width: 50%;
+	margin-left: 3%;
+	float: left;
+}
+.s7 .divImg_b{
+	float: right;
+	width: 32%;
+	margin-left: 0.3rem;
+	overflow: hidden;
+}
+.s7 .aig_a{
+	clear: both;
+}
+.s7 .aig_a .p_nth2{
+	margin-left: 3%;
+	display: inline-block;
+	padding: 0.02rem 0.02rem 0;
+	line-height: 0.24rem;
+	border: 0.02rem rgba(170,170,170,.3) solid;
+	border-radius: 0.06rem;
+	font-size: 0.16rem;
+	color: #aaa;
+	position: absolute;
+	bottom: -4%;
+}
+.s7 .aig_a .p_nth3{
+	margin-left: 0.16rem;
+	color: #aaa;
+	position: absolute;
+	bottom: -8%;
+	left: 12%;
+}
+/*oppo  组图*/
+.s4 .title{
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	font-size: 0.32rem;
+	line-height: 1.6em;
+}
+.s4  .aig_a{
+	color: #aaa;
+	font-size: 0.24rem;
+	margin-top: 0.15rem;
+	line-height: 0.28rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.s4 .p_nth2{
+	display: inline-block;
+	padding: 0.02rem 0.02rem 0;
+	line-height: 0.24rem;
+	border: 0.02rem rgba(170,170,170,.3) solid;
+	border-radius: 0.06rem;
+	font-size: 0.16rem;
+}
+.s4 .p_nth3{
+	margin: 0.02rem 0 0 0.16rem;
+}
+
+
+/*oppo查看全部*/
+.oppoFull{
+	width: 103%;
+	height: 50px;
+	text-align: center;
+	margin-left: -1%;
+	text-indent: 0rem;
+	position: absolute;
+	bottom: -2px;
+	padding-top: 5%;
+	background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(255,255,255,0)),color-stop(16%, #fff));
+}
+.oppoFull div{
+	display: inline-block;
+}
+.oppoFull img{
+	width: 30px;
+	height: 30px;
+}
+
+/*oppo下划线*/
+.lines{
+	height: 40px;
+	text-align: center;
+	margin-top: 10px;
+}
+.lines span{
+	color: #ddd;
+}
+.hr_under_line{
+	border: none;
+	border-top: 1px dashed #ddd;
+	margin-top: 0.95em;
+	width: 35%;
+	float: left;
+}

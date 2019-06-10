@@ -1,0 +1,101 @@
+var timestamps = new Date().getTime();
+var hrefUrl = window.location.href;
+var nets = GetQueryString("net");
+var imeis = GetQueryString("imei");
+var models = GetQueryString("model");
+var urls = hrefUrl;
+var ykcmMinjs=0;
+var cookieT;
+var NameOfCookie = "uid";
+var ykcm_c = document.cookie.indexOf(NameOfCookie + "=");
+if(ykcm_c != -1) { getcookie("uid") } else {
+    var s_number = (Math.floor(Math.random() * 10000) % 9 + 1).toString();
+    for(var i = 0; i < 8; i++) { s_number = s_number + (Math.floor(Math.random() * 10000) % 10).toString() } document.cookie = "uid=" + s_number + "";
+    getcookie("uid")
+}
+
+function getcookie(c_name) {
+    if(document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if(c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if(c_end == -1) { c_end = document.cookie.length } cookieT = document.cookie.substring(c_start, c_end)
+        }
+    }
+}
+if(nets == null && imeis == null && models == null) { $.ajax({ url: "https://ad.bizhiquan.com/monitor/h5/click", data: { uid: cookieT, imei: "", net: "", duration: 0, model: "", url: hrefUrl }, type: "get", dataType: "json", success: function(data) {} }) } else { $.ajax({ url: "https://ad.bizhiquan.com/monitor/h5/click", data: { uid: cookieT, imei: imeis, net: nets, duration: 0, model: models, url: hrefUrl }, type: "get", dataType: "json", success: function(data) {} }) }
+
+function GetQueryString(name) { var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); var r = window.location.search.substr(1).match(reg); if(r != null) { return unescape(r[2]) } return null }
+var second = 0;
+var minute = 0;
+var hour = 0;
+window.setTimeout("interval();", 5000);
+
+function interval() {
+    second++;
+    if(second < 2){
+        window.setTimeout("interval();", 60000);
+    }else if(second < 4){
+        window.setTimeout("interval();", 600000);
+    }
+    if(second == 60) {
+        second = 0;
+        minute += 1
+    }
+    if(minute == 60) {
+        minute = 0;
+        hour += 1
+    }
+//	window.setTimeout("interval();", 1000);
+    var timestamp = new Date().getTime();
+    var ppTime = timestamp - timestamps;
+    timestamps = timestamp;
+    var string_value = String(ppTime);
+    var timeP = string_value.substring(0, 10);
+    //console.log(timeP)
+    if(nets == null && imeis == null && models == null) {
+        $.ajax({ url: "https://ad.bizhiquan.com/monitor/h5/duration", data: { duration: timeP, uid: cookieT, imei: "", net: "", model: "", url: hrefUrl }, type: "get", dataType: "json", success: function(data) {} }) } else { $.ajax({ url: "https://ad.bizhiquan.com/monitor/h5/duration", data: { duration: timeP, uid: cookieT, imei: imeis, net: nets, model: models, url: hrefUrl }, type: "get", dataType: "json", success: function(data) {} }) }
+};
+/*滑动监听*/
+$(window).scroll(function(){
+    // scroll at bottom
+    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+        if(nets == null && imeis == null && models == null) {
+            $.ajax({
+                url: "https://ad.bizhiquan.com/monitor/h5/bottom_click",
+                data: {duration: 0, uid: cookieT, imei: "", net: "", model: "", url: hrefUrl},
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $(window).unbind('scroll');
+                }
+            })
+        } else {
+            $.ajax({
+                url: "https://ad.bizhiquan.com/monitor/h5/bottom_click",
+                data: {duration: 0, uid: cookieT, imei: imeis, net: nets, model: models, url: hrefUrl},
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $(window).unbind('scroll');
+                }
+            })
+        }
+    };
+    // load data
+});
+
+/*点击展开全部上报*/
+setTimeout(function () {
+    $(".full_tests").click(function () {
+        $.ajax({
+            url: "https://ad.bizhiquan.com/monitor/h5/all_click?",
+            data: {duration: 0, uid: cookieT, imei: "", net: "", model: "", url: hrefUrl},
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+            }
+        })
+    });
+},400);

@@ -1,0 +1,144 @@
+//获取当前页面url后面的参数-----------------------------------------------
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if(r != null) return(r[2]);
+	return null;
+}
+var urlIds = '';
+var idFlag = '';
+var testUrl = window.location.href;
+var channelno = GetQueryString("channelCode");
+var qikuTime=0;
+if(GetQueryString("id") == null) {
+	
+	if(testUrl.indexOf("article_") != -1) {
+		urlIds = testUrl.substring(testUrl.indexOf("article_") + 8, testUrl.indexOf(".html"));
+	}
+} else {
+	urlIds = GetQueryString("id"); //获取参数id
+	idFlag = '1';
+}
+var type = GetQueryString("type");
+var u = "article";
+if(type) {
+	u = type;
+}
+//获取页面内容信息------------------------------------------------------
+if(idFlag == '1'){
+	$.ajax({
+		type: "post",
+		url: _baserUrl + "/" + u + "/get/" + urlIds,
+		data: {
+
+		},
+		dataType: "json",
+		success: function(rsp) {
+			console.log(rsp)
+			var s = parseInt(rsp.data.create_time); //转数字
+			var r = s.toString(); //转字符串
+			var abc = r.substring(0, 10); //截取前9位
+			// 将当前时间换成时间格式字符串
+			var timestamp3 = abc;
+			var newDate = new Date();
+			newDate.setTime(timestamp3 * 1000);
+			// Wed, 18 Jun 2014 02:33:24 GMT
+			demo();
+			var time_1 = newDate.format('yyyy-MM-dd');
+			$('.header_a').html(rsp.data.title);
+			$('.nav_a').html(time_1);
+			$('.nav_b').html(rsp.data.source);
+            $('.text_a').html(rsp.data.content);
+            if(channelno=='qiku_magazine'){
+                qikuTime=1;
+                var time_2 = newDate.format('MM/dd  hh:mm');
+                $('.nav_a').html(time_2);
+			}
+            //判断是否含有原文链接
+			var hrefA = '';
+			hrefA = rsp.data.text_link;
+			if(hrefA == '') {
+				$(".footer").css({
+					"display": "none"
+				});
+				$('.text').css({
+					"padding-bottom": "1rem"
+				});
+				$("*").css({
+					"fontFamily": ""
+				});
+			} else {
+				var linkTr = '<a href="' + hrefA + '" class="footer_a">阅读原文</a>';
+				$(".footerI").html(linkTr);
+			}
+
+		}
+	});
+}
+
+/*返回id给服务端，回显阅读量----------------------------------------------*/
+var strS = ' ';
+$.ajax({
+	url: 'https://ad.bizhiquan.com/monitor/updateNewsCount?id=' + urlIds,
+	data: {},
+	type: 'get',
+	dataType: 'json',
+	success: function(data) {
+	}
+});
+$.ajax({
+	url: 'https://ad.bizhiquan.com/monitor/getNewsCount?id=' + urlIds,
+	data: {},
+	type: 'get',
+	dataType: 'json',
+	success: function(data) {
+		 if(channelno == 'vivo' || channelno == 'vivo_18_9'||channelno == 'vivo_dist'||channelno=='vivo_new'){
+			var str = '';
+			var rand = new Number(500);
+		    var randNum = new Number(data.count);
+		    var numberOp = rand + randNum;
+			str = '<i class="nav_i">' +numberOp + '人已阅读</i>';
+			$('.nav_em').html(str);
+		 }else{
+			$(".nav_em").remove();
+		}
+	}
+});
+
+//====================封装工具=====把时间戳转换----------------------------------------
+function demo() {
+	Date.prototype.format = function(format) {
+		var date = {
+			"M+": this.getMonth() + 1,
+			"d+": this.getDate(),
+			"h+": this.getHours(),
+			"m+": this.getMinutes(),
+			"s+": this.getSeconds(),
+			"q+": Math.floor((this.getMonth() + 3) / 3),
+			"S+": this.getMilliseconds()
+		};
+		if(/(y+)/i.test(format)) {
+			format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+		}
+		for(var k in date) {
+			if(new RegExp("(" + k + ")").test(format)) {
+				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ?
+					date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+			}
+		}
+		return format;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

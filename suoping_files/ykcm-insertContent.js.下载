@@ -1,0 +1,149 @@
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?94fecc00bb40f63990d76c12398ca411";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+var insertContentJs=0;
+if(!window.jQuery){
+     document.write("<script src='https://unock.bizhiquan.com/common/js/jquery.min.js'><\/script>");
+}
+if(typeof ykcmMinjs=='undefined'){
+    document.write("<script src='https://unock.bizhiquan.com/common/js/ykcm-min.js'><\/script>");
+}
+
+// /获取当前页面url后面的参数-----------------------------------------------
+function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        //截取URL里面&后面的值
+    var r = window.location.search.substr(1).match(reg);
+    if(r != null) return(r[2]);
+        return null;
+}
+
+var channelno = GetQueryString("channelCode"); 
+var adFlag = GetQueryString("ad");
+
+if(channelno == 'vivo' || channelno == 'vivo_18_9'||channelno=='vivo_dist'||channelno=='vivo_new'){
+    document.write("<script type='text/javascript' src='https://sspstatic.vivo.com.cn/ssp/js/vad.1.1.0.js'></script>");
+}
+/*三星广告*/
+if(channelno=='samsung'){
+/*    $('body').append('<div id="unreasonable"></div><div id="rexokuh"></div><div id="rexoulj"></div>');
+    window.TaurusWULI = window.TaurusWULI || [];
+    TaurusWULI.push({
+        sid: "rexlsp0",
+        pid: "rexno5s",
+        el: "unreasonable", //id
+        type: "native",
+    });
+
+    window.TaurusWULI = window.TaurusWULI || [];
+    TaurusWULI.push({
+        sid: "rexlsp0",
+        pid: "rexokuh",
+        el: "rexokuh", //id
+        type: "native",
+    });
+    window.TaurusWULI = window.TaurusWULI || [];
+    TaurusWULI.push({
+        sid: "rexlsp0",
+        pid: "rexoulj",
+        el: "rexoulj", //id
+        type: "native",
+    });
+    document.write('<script src="//images.ad.9wuli.com/static/js/wuli.1.0.2.js"></script>')*/
+    setTimeout(function () {
+        $($("#articleText").children(".articleEach").get(0)).append('<div id="unreasonable" style="text-indent:0px;margin-top: 10px"></div>');
+        /*大图1*/
+        window.TaurusWULI = window.TaurusWULI || [];
+        TaurusWULI.push({
+            sid: "rexlsp0",
+            pid: "rnycgzv",
+            el: "unreasonable", //id
+            type: "native",
+        });
+        $('#articleText').append('<div id="rexokuh" style="text-indent:0px;margin-top: 10px"></div>');
+        /*00400-详情页-大图2*/
+        (window.TaurusWULI = window.TaurusWULI || []).push({
+            sid: "rexlsp0",
+            pid: "rnycsrs",
+            el: "rexokuh", //id
+            type: "native",
+        });
+    },400);
+    setTimeout(function () {
+        $($("#relevant_list").children(".data").get(0)).after('<div id="rexoulj" style="width: 100%"></div>');
+        /*信息流*/
+        window.TaurusWULI = window.TaurusWULI || [];
+        TaurusWULI.push({
+            sid: "rexlsp0",
+            pid: "rnybziy",
+            el: "rexoulj", //id
+            type: "native",
+        });
+    },2000);
+    document.write('<script src="//js.8bcd9.com/1.0.4/js/wuli.js"></script>');
+   /* setTimeout(function () {
+        $("#rexoulj").children("ins").css('width','86%');
+        $("#rexoulj").find("iframe").css('min-width','145%')
+    },3000);*/
+}
+
+if(channelno == 'htc' || channelno == 'asus'||channelno=='koobee'||channelno=='hisense'||channelno=='sugar'||channelno=='gionee'){
+    if ($("#u3539621").length!=1&&$("#u3518973").length!= 1) {
+        document.write("<script type='text/javascript' src='https://unock.bizhiquan.com/common/js/Baiduspider-cpro.js'></script>");
+    }
+}
+
+if(channelno!='vivo'&&channelno!='vivo_18_9'&&channelno!='vivo_dist'&&channelno!='vivo_new'&&channelno!='oppo_ex'&&channelno!='oppo_ac'&&channelno!='oppo_photos_dist'&&channelno!='osp'){
+    if(typeof judge=="undefined"){
+        document.write('<script type=\"text/javascript"src = \"https://unock.bizhiquan.com/common/js/this_Advertisement.js\"></script>');
+    }
+}
+if(channelno=='vivo_test'){
+    document.write('<script type=\"text/javascript"src = \"http://apph5wsdl.vivo.com.cn/appstore/h5/ssp_jssdk/js/vad.1.1.0.js\"></script>');
+}
+/*二跳*/
+if(channelno=='hisense'||channelno=='qiku_magazine'||channelno=='sugar'||channelno=='gionee'){
+    document.write('<script type=\"text/javascript"src = \"https://unock.bizhiquan.com/common/js/picture-mask-layer.js\"></script>');
+}
+
+if(channelno=='meizu_china'){
+    document.write('<script src="https://unock.bizhiquan.com/common/js/Meizu.js"></script>');
+    document.write('<script src="https://unock.bizhiquan.com/common/js/relevant.js"></script>');
+}
+if(channelno=='qiku_magazine'){
+    document.write('<script src="https://unock.bizhiquan.com/common/js/relevant.js"></script>');
+    document.write('<script src="https://unock.bizhiquan.com/common/js/qiku_advartisement.js"></script>');
+}
+if(channelno=='vivo_test'||channelno=='oppo_test'){
+    document.write('<script src="https://unock.bizhiquan.com/common/js/qiku_advartisement.js"></script>');
+}
+if(channelno=='gionee'||channelno=='hisense'||channelno=='htc'||channelno=='asus'||channelno=='sugar'||channelno=='cmcc'||channelno=='koobee'||channelno=='lenovo'||channelno=='blackshark'||channelno=='huawei_test'||channelno=='samsung'){
+    document.write('<script src="https://unock.bizhiquan.com/common/js/relevant.js"></script>');
+}
+
+if(channelno=='sogo_test'){
+    document.write('<script src="https://theta.sogoucdn.com/wap/js/wp.js"></script>');
+    document.write('<script src="https://unock.bizhiquan.com/common/js/sogo.js"></script>');
+}
+
+if(typeof adFlag != "undefined" && adFlag != null && adFlag == 'yes'){
+    if(typeof channelno != "undefined" && channelno != null && channelno != ''){
+	var fileref=document.createElement("link")
+	fileref.rel="stylesheet";
+	fileref.type="text/css";
+	fileref.href="https://unock.bizhiquan.com/common/css/ykcm-insertContent.css";
+	var headobj=document.head || document.getElementsByTagName('head')[0];
+        headobj.appendChild(fileref); 
+
+        if(channelno == 'oppo_ex' || channelno == 'oppo_photos_dist'|| channelno == 'oppo_ac'|| channelno == 'osp') {
+            document.write("<script src='https://adsfs.oppomobile.com/mp/app/partner/lockscreen/index.js'><\/script>");
+        } else if(channelno=="oppo_test"){
+            document.write("<script src='http://adsfs.ads-test.wanyol.com/mp/app/partner/lockscreen/index.js'><\/script>");
+        }
+        document.write("<script id='ykcmAdverti' src='https://unock.bizhiquan.com/common/js/ykcm-advertisement.js'><\/script>");
+    }
+}

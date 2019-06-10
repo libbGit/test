@@ -1,0 +1,110 @@
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if(r != null) return(r[2]);
+    return null;
+}
+var channelno = GetQueryString("channelCode");
+/*判断如果渠道号为vivo时隐藏壹刻传媒*/
+/*if(channelno == 'vivo'){
+    $(".handI").hide();
+}*/
+if(channelno == 'vivo' || channelno == 'vivo_18_9'||channelno=='vivo_dist'||channelno=='vivo_new') {
+    $('.handI').css({
+        'height': '1.1rem'
+    }); /* js rem 布局解决方案 */
+    (function(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if(!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+            };
+        if(!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+} else {
+    (function(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if(!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+            };
+        if(!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+}
+setTimeout(show, 300);
+
+
+function show() {
+    $("body").css("visibility", "visible")
+}
+
+/*setTimeout(hide, 3000);
+
+
+function hide() {
+    $("body").css("overflow", "visible")
+}*/
+/*document.write("<script src='https://sspstatic.vivo.com.cn/ssp/js/vad.1.1.0.js'><\/script>");*/
+	/*setTimeout(function () {
+    $("#__vconsole").css({"height":"0px","width":"0px"})
+     },0);*/
+
+
+/*
+$(function () {
+    var str='<div class="insert_content" id="insert_content">\n' +
+        '        <div class="insert_popular">热门推荐</div>\n' +
+        '        <div class="insert_popular_every">\n' +
+        '            <div class="insert_popular_every_img">\n' +
+        '                <img src="img/VCG111157340137.jpg" alt="img">\n' +
+        '            </div>\n' +
+        '            <div class="insert_popular_every_describe">花多少钱才不算贵</div>\n' +
+        '        </div>\n' +
+        '        <div class="insert_popular_every">\n' +
+        '            <div class="insert_popular_every_img">\n' +
+        '                <img src="img/VCG111157340137.jpg" alt="img">\n' +
+        '            </div>\n' +
+        '            <div class="insert_popular_every_describe">怎么玩，花多少钱才不算贵</div>\n' +
+        '        </div>\n' +
+        '        <div class="insert_popular_every">\n' +
+        '            <div class="insert_popular_every_img">\n' +
+        '                <img src="img/VCG111157340137.jpg" alt="img">\n' +
+        '            </div>\n' +
+        '            <div class="insert_popular_every_describe">底要怎么玩，花多少钱才不算贵</div>\n' +
+        '        </div>\n' +
+        '    </div>';
+    $("body").append(str);
+});
+window.onscroll=function (ev) {
+    if ($(document).scrollTop()+1>= $(document).height() - $(window).height()) {
+        var insertLoadImgLength=$("body .insert_loading").length;
+        if (insertLoadImgLength==0){
+            var insertLoadImg="<div class=\"insert_loading\"><img src=\"img/waitting2.gif\" alt=\"img\"></div>";
+            $("body .insert_content").append(insertLoadImg);
+            var a=[1,2,3,4,5,6,7,8,9,0];
+            var addStr='';
+            setTimeout(function () {
+                $("body .insert_loading").remove();
+                $.each(a,function (index,item) {
+                    addStr+='<div class="insert_popular_every">\n' +
+                        '        <div class="insert_popular_every_img">\n' +
+                        '            <img src="img/VCG111157340137.jpg" alt="img">\n' +
+                        '        </div>\n' +
+                        '        <div class="insert_popular_every_describe">'+item +
+                        '           </div>\n' +
+                        '    </div>';
+                });
+                $("body #insert_content").append(addStr);
+            },2000);
+        }
+    }
+
+};*/
