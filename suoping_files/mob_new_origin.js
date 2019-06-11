@@ -309,16 +309,16 @@
     createTearAngle(mtData);
     createTearFold(mtData);
     /**
-          6 撕角展示
-          7 撕角交互   
-          13 撕角渐变交互   
-          14 撕角渐变展示
-  
-          8 折页上下展示  
-          9 折页左右展示  
-          10 折页上下交互  
-          11 折页左右交互  
-         */
+            6 撕角展示
+            7 撕角交互   
+            13 撕角渐变交互   
+            14 撕角渐变展示
+    
+            8 折页上下展示  
+            9 折页左右展示  
+            10 折页上下交互  
+            11 折页左右交互  
+           */
     if (mtData.type == 6 || mtData.type == 7 || mtData.type == 13 || mtData.type == 14) {
       let vm = new Vue({
         render: h => h("motu-tear-angle")
@@ -369,34 +369,34 @@
         };
       },
       template: `<div class="motu-main" style="position: relative; overflow: hidden;" :style="img_layout_style">
-                        <div class="mt_img_layout" :style="img_layout_style" style="position: relative; z-index: 2;">
-                            <div class="mt_img_box mt_the_img" @click="gotoLanding(landingUrl,$event)">
-                                <div v-html="componentData.first_img.context.outerHTML"></div>
-                            </div>
-                            <template v-if="isHorizontal">
-                                <i class="mt_btn mt_btn_right" v-if="isShowRightArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_right.gif" style="width:100%;height:auto;min-width:100%"/></i>
-                                <i class="mt_btn mt_btn_left" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_left.gif" style="width:100%;height:auto;min-width:100%"></i>
-                            </template>
-                            <template v-else>
-                                <i class="mt_btn mt_btn_up" v-if="isShowUpArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_up.gif" style="width:100%;height:auto;min-width:100%"/></i>
-                                <i class="mt_btn mt_btn_down" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_down.gif" style="width:100%;height:auto;min-width:100%"/></i>
-                            </template>
-                        </div>
-                        <div class="mt_adImg_div" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
-                            <a :href="landingUrl" v-if="isShowBottomImage" class="mt_pd_img" :style="motu_bottom_style" @click="gotoLanding(landingUrl,$event)">
-                                <img style="display:none;position:absolute" :src="url" :style="motu_bottom_img_style" />
-                            </a>
-                        </div>
-                        <div class="ad_msgMc" v-if="isShowClose">
-                            <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
-                            <div class="input__area" v-if="false" @click="onClickInputArea($event)">
-                                <div>
-                                  <label>姓名</label>
-                                  <input type="text"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`,
+                          <div class="mt_img_layout" :style="img_layout_style" style="position: relative; z-index: 2;">
+                              <div class="mt_img_box mt_the_img" @click="gotoLanding(landingUrl,$event)">
+                                  <div v-html="componentData.first_img.context.outerHTML"></div>
+                              </div>
+                              <template v-if="isHorizontal">
+                                  <i class="mt_btn mt_btn_right" v-if="isShowRightArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_right.gif" style="width:100%;height:auto;min-width:100%"/></i>
+                                  <i class="mt_btn mt_btn_left" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_left.gif" style="width:100%;height:auto;min-width:100%"></i>
+                              </template>
+                              <template v-else>
+                                  <i class="mt_btn mt_btn_up" v-if="isShowUpArrow"><img src="https://images.pagechoice.net/data/motu_wap/icon_up.gif" style="width:100%;height:auto;min-width:100%"/></i>
+                                  <i class="mt_btn mt_btn_down" v-else><img src="https://images.pagechoice.net/data/motu_wap/icon_down.gif" style="width:100%;height:auto;min-width:100%"/></i>
+                              </template>
+                          </div>
+                          <div class="mt_adImg_div" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
+                              <a :href="landingUrl" v-if="isShowBottomImage" class="mt_pd_img" :style="motu_bottom_style" @click="gotoLanding(landingUrl,$event)">
+                                  <img style="display:none;position:absolute" :src="url" :style="motu_bottom_img_style" />
+                              </a>
+                          </div>
+                          <div class="ad_msgMc" v-if="isShowClose">
+                              <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
+                              <div class="input__area" v-if="false" @click="onClickInputArea($event)">
+                                  <div>
+                                    <label>姓名</label>
+                                    <input type="text"/>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>`,
       computed: {
         isHorizontal() {
           return this.direction == "horizontal";
@@ -651,6 +651,7 @@
 
           geoStores: {},
           showJmc: true,
+          showPage2Close: true,
 
           provinceArr: [],
           province_title: "",
@@ -675,6 +676,8 @@
           landingUrl: "",
           logo_img_src: "",
 
+          secondGifUrl: "",
+
           username: "",
           phone: "",
           ischecked: true,
@@ -691,14 +694,9 @@
         };
       },
       template: `<div style="position:relative; display:inline-block;" class="tear-angle">
-                        <div class="flipbook">
-                            <div>
-                                <div class="mt_main" v-html="componentData.first_img.context.outerHTML">
-                                </div>
-                                <div class="opcity">
-                                    <a class="opcity_a_href" :href="landingUrl"></a>
-                                    <img style="position:relative;top:50%;transform:translate(0,-50%)" :src="getImageUrl()">
-                                </div>
+                    <div class="flipbook">
+                        <div>
+                            <div class="mt_main" v-html="componentData.first_img.context.outerHTML"></div>
                                 <span class="jMc" v-if="showJmc">
                                     <span class="mt_jiao_img"></span>
                                     <img :src="logo_img_src" width="45" height="45" class="logo"/>
@@ -706,10 +704,10 @@
                                 </span>
                             </div>
                             <div class="seconde_page">
-                                <div class="page2_main" style="position: absolute;opacity: 0;" v-html="componentData.first_img.context.outerHTML"></div>
                                 <a :href="landingUrl" class="mt_adImg_a">
-                                    <img :src="getImageUrl()" @click="setMotuMonitor(componentData.adsense[0].cvCode)"/>
+                                    <img :src="secondGifUrl" @click="setMotuMonitor(componentData.adsense[0].cvCode)"/>
                                 </a>
+
                                 <div class="ad_msgMc" v-if="isOperate">
                                     <div class="person_info" v-show="personInfoPage==1">
                                         <span v-show="!rules.username.validate" class="name_error_msg">{{rules.username.message}}</span>
@@ -752,10 +750,11 @@
                                         <input type="text" v-else value="提交成功！" class="tjTxt"/>
                                     </div>
                                 </div>
-                                <span class="mt_btn_close" @click="onClose($event)">关闭广告</span>
+                                <span class="mt_btn_close" @click="onClose($event)" v-if="showPage2Close">关闭广告</span>
                             </div>
                         </div>
-                    </div>`,
+                    </div>
+                </div>`,
       computed: {
         isSecondPage() {
           //撕角交互   撕角渐变交互
@@ -800,7 +799,8 @@
               }
             }
           }
-          return imgurl;
+
+          this.secondGifUrl = imgurl;
         },
 
         onClose(e) {
@@ -1000,19 +1000,17 @@
           }
         }
       },
-      created() {
-        this.init();
-      },
 
       mounted() {
-        //创建撕角
+        this.init();
+        // //创建撕角
         $jquery(".flipbook").turn({
           width: this.componentData.img_width,
           height: this.componentData.img_height,
-          elevation: 50,
+          elevation: 0,
           display: "single",
           gradients: true,
-          turnCorners: "bl,br",
+          turnCorners: "bl,tr",
           acceleration: true,
           autoCenter: true
         });
@@ -1021,11 +1019,8 @@
         $jquery(".flipbook").on("turning", (event, page, view) => {
           if (page == 2) {
             this.page = 2;
-            console.log("absolute");
-            $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
-            $jquery(".mt_adImg_a").css({ position: "relative", opacity: 1 });
-
             $jquery(".flipbook").turn("disable", true); //禁止翻到 第一页，只能点击右上角关闭 回到第一页
+            $jquery(".mt_adImg_a").css({ opacity: 1 });
 
             //大图监测曝光
             if (this.componentData.adsense[0].pvCode) {
@@ -1033,9 +1028,14 @@
             }
           } else {
             this.page = 1;
-            $jquery(".opcity").css({ opacity: 0 });
-            $jquery(".mt_adImg_a").css({ position: "relative", opacity: 1 });
+            $jquery(".flipbook").turn("disable", false);
+            $jquery(".mt_main").css({ opacity: 1 });
           }
+        });
+
+        //获取第二页的git图
+        this.$nextTick(() => {
+          this.getImageUrl();
         });
 
         this.getCityData().then(data => {
@@ -1044,7 +1044,7 @@
           this.province_title = data.rows[1].title;
           this.city_tile = data.rows[2].title;
           this.hometown_title = data.rows[3].title;
-          console.log("data========", data);
+
           for (let i in data.geoStores) {
             this.provinceArr.push(i);
           }
@@ -1054,44 +1054,48 @@
         if (this.componentData.type == 13 || this.componentData.type == 14) {
           //屏幕上下滑动时
           window.onscroll = () => {
-            let windowHeight = window.innerHeight;
-            // jding 为随滚动，图片距顶高度  aaaa 为随滚动，图片中心 距顶百分比  bbbb为 图片顶部距顶高度。
+            if (this.page == 2) {
+              return;
+            }
             let radio =
               ($jquery(".flipbook").offset().top - $jquery(document).scrollTop()) / $jquery(".flipbook").offset().top;
 
             let opacity = 1 - radio;
-            $jquery(".opcity").css({
-              opacity: opacity
-            });
 
-            //下滑时，对第二页中的 隐藏第一页的处理
-            $jquery(".page2_main").css({ position: "relative", opacity: 1 - opacity });
-            $jquery(".mt_adImg_a").css({ position: "relative", opacity: opacity });
+            if (opacity > 0.85) {
+              $jquery("[page=2]").css({ "z-index": 2 });
+              $jquery("[page=1]").css({ "z-index": 1 });
+            } else {
+              $jquery("[page=2]").css({ "z-index": 1 });
+              $jquery("[page=1]").css({ "z-index": 2 });
+            }
+
+            //下滑时，淡化 第一页，深化 第二页
+            $jquery(".mt_main").css({ opacity: 1 - opacity });
+            $jquery(".mt_adImg_a").css({ opacity: opacity });
 
             if (opacity > 0.3) {
               $jquery(".flipbook").turn("disable", true);
               this.showJmc = false;
+              this.showPage2Close = false;
             } else {
               $jquery(".flipbook").turn("disable", false);
               this.showJmc = true;
+              this.showPage2Close = true;
             }
 
             if (opacity > 0.85) {
-              $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
-              $jquery(".mt_adImg_a").css({ position: "relative", opacity: 1 });
-              $jquery(".opcity").css({ opacity: 1 });
+              $jquery(".mt_adImg_a").css({ opacity: 1 });
             } else if (opacity < 0.15) {
-              $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
-              $jquery(".mt_adImg_a").css({ position: "relative", opacity: 1 });
+              $jquery(".mt_adImg_a").css({ opacity: 1 });
             }
           };
 
           //初始化，如果高度，离顶部太近，则直接翻到第2页
-          let initRadio =
-            1 - ($jquery(".flipbook").offset().top - $jquery(document).scrollTop()) / $jquery(".flipbook").offset().top;
-          if (initRadio > 0.85) {
-            $jquery(".page2_main").css({ position: "absolute", opacity: 0 });
-          }
+          //   let initRadio =
+          //     1 - ($jquery(".flipbook").offset().top - $jquery(document).scrollTop()) / $jquery(".flipbook").offset().top;
+          //   if (initRadio > 0.85) {
+          //   }
         }
       }
     });
