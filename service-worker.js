@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.42075710f71a19c6fb0f98ab61043c8e.js"
+  "/test/precache-manifest.128a58db774bfa5f633eeea6401ed2e5.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "hy-mas"});
